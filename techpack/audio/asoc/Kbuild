@@ -133,7 +133,7 @@ endif
 
 # for KONA sound card driver
 ifdef CONFIG_SND_SOC_KONA
-ifneq (,$(filter nio%, $(TARGET_PRODUCT)))
+ifeq ($(CONFIG_NIO_DTB), y)
         MACHINE_OBJS += kona-awinic.o
 else ifneq (,$(filter pstar%, $(TARGET_PRODUCT)))
         MACHINE_OBJS += kona-awinic.o
@@ -227,7 +227,6 @@ CDEFINES +=	-DANI_LITTLE_BYTE_ENDIAN \
 		-DANI_OS_TYPE_ANDROID=6 \
 		-DPTT_SOCK_SVC_ENABLE \
 		-Wall\
-		-Werror\
 		-D__linux__
 
 KBUILD_CPPFLAGS += $(CDEFINES)

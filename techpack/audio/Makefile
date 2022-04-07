@@ -1,21 +1,26 @@
 # auto-detect subdirs
 ifeq ($(CONFIG_ARCH_SDXPOORWILLS), y)
 include $(srctree)/techpack/audio/config/sdxpoorwillsauto.conf
-export
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sdxpoorwillsauto.conf)
 endif
 ifeq ($(CONFIG_ARCH_SM8150), y)
 include $(srctree)/techpack/audio/config/sm8150auto.conf
-export
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sm8150auto.conf)
 endif
 ifeq ($(CONFIG_ARCH_SDMSHRIKE), y)
 include $(srctree)/techpack/audio/config/sm8150auto.conf
-export
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/sm8150auto.conf)
 endif
 ifeq ($(CONFIG_ARCH_KONA), y)
 include $(srctree)/techpack/audio/config/konaauto.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/konaauto.conf)
 endif
 ifeq ($(CONFIG_ARCH_SDM660), y)
 include $(srctree)/techpack/audio/config/sdm660auto.conf
+endif
+ifeq ($(CONFIG_NIO_DTB), y)
+include $(srctree)/techpack/audio/config/konanio.conf
+export $(shell sed 's/=.*//' $(srctree)/techpack/audio/config/konanio.conf)
 endif
 
 # Use USERINCLUDE when you must reference the UAPI directories only.
@@ -49,6 +54,11 @@ ifeq ($(CONFIG_ARCH_SDM660), y)
 LINUXINCLUDE    += \
                 -include $(srctree)/techpack/audio/config/sdm660autoconf.h
 endif
+ifeq ($(CONFIG_NIO_DTB), y)
+LINUXINCLUDE    += \
+                -include $(srctree)/techpack/audio/config/konanio.h
+endif
+
 obj-y += soc/
 obj-y += dsp/
 obj-y += ipc/

@@ -85,7 +85,7 @@ ifeq ($(KERNEL_BUILD), 0)
 		export
 		INCS    +=  -include $(AUDIO_ROOT)/config/sdm660autoconf.h
 	endif
-	ifneq (,$(filter nio%, $(TARGET_PRODUCT)))
+	ifeq ($(CONFIG_NIO_DTB), y)
                 INCS    +=  -include $(AUDIO_ROOT)/config/konanio.h
 	endif
 	ifneq (,$(filter pstar%, $(TARGET_PRODUCT)))
@@ -223,7 +223,6 @@ CDEFINES +=	-DANI_LITTLE_BYTE_ENDIAN \
 		-DANI_OS_TYPE_ANDROID=6 \
 		-DPTT_SOCK_SVC_ENABLE \
 		-Wall\
-		-Werror\
 		-D__linux__
 
 KBUILD_CPPFLAGS += $(CDEFINES)
