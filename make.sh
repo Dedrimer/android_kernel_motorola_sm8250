@@ -64,7 +64,7 @@ timedatectl set-timezone ${timezone}
 
 print "You are building version:${date}" yellow
 
-clang_path="${HOME}/cbl/bin/"
+clang_path="${HOME}/cbl/bin"
 gcc_path="/usr/bin/aarch64-linux-gnu-"
 gcc_32_path="/usr/bin/arm-linux-gnueabi-"
 
@@ -87,7 +87,7 @@ else [ ${buildtype} == clang ]
 	    OBJCOPY=${clang_path}/llvm-objcopy \
 	    OBJDUMP=${clang_path}/llvm-objdump \
 	    STRIP=${clang_path}/llvm-strip \
-     CROSS_COMPILE_ARM32=${gcc_32_path} "
+            CROSS_COMPILE_ARM32=${gcc_32_path} "
 fi
 
 
