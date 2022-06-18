@@ -10,4 +10,3 @@ config MSM_TZ_QSEE_LOG
 	depends on MSM_TZ_LOG
 	help
 	  Set to enable print MSM Trust Zone (TZ) QSEE log to kernel log
-
